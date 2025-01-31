@@ -23,3 +23,17 @@ public enum PowMod {
         return result
     }
 }
+
+extension String {
+    public func hexaToBytes() -> [UInt8] {
+        var data = [UInt8]()
+        var hex = self
+        while hex.count > 0 {
+            let index = hex.index(hex.startIndex, offsetBy: 2)
+            let byte = UInt8(hex[..<index], radix: 16)!
+            data.append(byte)
+            hex = String(hex[index...])
+        }
+        return data
+    }
+}
